@@ -1,0 +1,24 @@
+<div id = "head">
+  SORGULAMA
+</div>
+<div id = "form">
+<form action = "hocami.php" method = "POST">
+<dl>
+<fieldset>
+  <legend>HOCA ARAMA EKRANI</legend>
+
+	<dt>Üniversiteler :</dt>
+	<dd>
+		<?php listbox_kv(uniler(), 'uni');?>
+	</dd>
+
+	<dt>Bölümler :</dt>
+	<dd>
+		<?php listbox_kv(bolumler(), 'bolum');?>
+	</dd>
+	</br>
+  <dd><input class="subbutton" type = "submit" value = "hoca_ara" ></dd>
+</fieldset>
+</dl>
+</form>
+</div>

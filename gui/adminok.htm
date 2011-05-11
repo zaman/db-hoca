@@ -1,0 +1,38 @@
+<div id = "form">
+<form action = "hacaekle.php" method = "POST" enctype = "multipart/form-data">
+  <dl>
+  <fieldset>
+	<legend>YENİ HOCA EKLE</legend>
+	<span>Resim ekle </span>
+	 <dd><input type = "file" name = "file" id = "file"/></dd>
+	<dt>Ad :</dt>
+	<dd><input type = "text" name  = "ad"></dd>
+	<dt>Soyad :</dt>
+	<dd><input type = "text" name  = "soyad"></dd>
+
+	<dt>Universiteler :</dt>
+	<dd>
+		<?php listbox_kv(uniler(), 'uni');?>
+	</dd>
+	<dd><input class="subbutton" type = "submit" value = "universite seçiniz"></dd>
+	<dt>Bölümler :</dt>
+	<dd>
+		<?php listbox_kv(bolumler(), 'bolum');?>
+	</dd>
+	<dd><input class="subbutton" type = "submit" value = "bolum seçiniz"></dd>
+  </fieldset>
+  </dl>
+</form>
+</div>
+
+<div id = "form">
+<form action = "csvekle.php" method = "POST">
+  <dl>
+  <fieldset>
+	<legend>CSV EKLE</legend>
+	<dt>csv yi yapıştırın</dt>
+	<dd><input class="subbutton" type = "submit" value = "yer_kaydet"></dd>
+  </fieldset>
+  </dl>
+</form>
+</div>

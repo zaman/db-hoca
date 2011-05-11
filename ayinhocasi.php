@@ -6,7 +6,7 @@ require 'lib/util.php';
 $head = array('head.htm', 'menu.htm','error.htm');
 
 // body
-$template = array('goster.htm');
+$template = array('ayinhocasi.htm');
 
 // footer
 $footer = array('footer.htm');

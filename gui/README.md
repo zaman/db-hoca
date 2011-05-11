@@ -1,0 +1,3 @@
+sitenin değişen template dosyaları buraya
+
+ör : anasayfa.htm, index.htm vb...

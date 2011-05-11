@@ -1,0 +1,25 @@
+a { text-decoration: none; }
+img { border: none; }
+body {
+  text-align: center;
+   margin-left:200px;
+   margin-right:200px;
+}
+head {
+  border: 5px solid;
+  background-color:red;
+}
+#form {
+  text-align: left;
+  font-size: 17px;
+}
+legend {
+	color: #b00000;
+}
+#footer {
+	border: 1px solid;
+}
+
+#banner {
+	
+}

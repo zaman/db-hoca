@@ -1,0 +1,11 @@
+; database bilgileri
+DB.user=root
+DB.name=benim_hocam
+DB.password=zaman55
+DB.host=localhost
+
+; ör : gui template dizini "gui"
+GUI=gui
+
+; ör : body site taslak dizini "body"
+BODY=body

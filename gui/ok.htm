@@ -1,0 +1,10 @@
+<p class = 'info'> <strong>İşleminiz aşağıdaki bilgilere göre başarıyla gerçekleştirildi </strong> </p>
+<dl>
+<fieldset>	
+<?php
+	$array = g56::get('SESSION.ok');
+	foreach ($array as $key => $value)
+		echo "<dt>$key : $value</dt><br/>";
+?>
+</fieldset>
+</dl>

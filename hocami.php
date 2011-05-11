@@ -13,7 +13,7 @@ if ($hoca->find("bolum_id = '" . $bolum . "' and uni_id = '" .  $uni . "'")) {
 	if (g56::exists('SESSION.error'))
 		g56::clear('SESSION.error');
 	
-	$ok = array("HOCA KAYIT BİLGİLERİ" => $hocalar);
+	$ok = array("HOCA KAYIT BİLGİLERİ" => $hocalar['items']);
 
 	g56::set('SESSION.ok', $ok);
 

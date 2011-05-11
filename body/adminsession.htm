@@ -1,0 +1,29 @@
+<?php
+	if (g56::exists('SESSION.admin')) {
+		echo "
+		<div id = 'login'>
+			<form>
+			<dl>
+				<dt>Hoşgeldin admin</dt>
+				<b>ad:</b>" .
+				"<b>" . g56::get('SESSION.admin') . "</b>" .
+				"
+				<br>oturumu kapatmak için <a href = 'logout.php'>tıklayınız.</a>
+			</dl>
+			</form>
+		</div>";
+	}else  {
+		echo
+		"<div id = 'login'>
+			<form>
+			<dl>
+				<dd>&nbsp;</dd>
+				<dd>&nbsp;</dd>
+				<dd>&nbsp;</dd>
+				<dd>&nbsp;</dd>
+				<dd>&nbsp;</dd>
+			</dl>
+			</form>
+		</div>";
+	}
+?>

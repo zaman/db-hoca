@@ -1,0 +1,3 @@
+sitenin değişmeyen taslak dosyaları buraya
+
+ör : css, js, images, head.htm, footer.htm vb...

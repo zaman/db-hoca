@@ -1,0 +1,26 @@
+<div id = "form">
+  <form action = "usermi.php" method = "POST">
+  <dl>
+    <fieldset>
+      <legend>MÜŞTERİ KAYIT EKRANI</legend>
+      <dt>İliniz :</dt>
+      <dd><?php echo listbox_kv(iller(), 'il_id'); ?></dd>
+      <dt>Kullanıcı adınız :</dt>
+      <dd><input type = "text" name = "username" ></dd>
+      <dt>Adınız :</dt>
+      <dd><input type = "text" name = "ad" ></dd>
+      <dt>Soyadınız :</dt>
+      <dd><input type = "text" name = "soyad" ></dd>
+      <dt>E-mail :</dt>
+      <dd><input type = "text" name = "email" ></dd>
+      <dt>Şifre :</dt>
+      <dd><input type = "password" name = "password"></dd>
+      <dt>Telefon :</dt>
+      <dd><input type = "text" name = "telefon"></dd>
+      <dt>Kredikart :</dt>
+      <dd><input type = "text" name = "kredikart"></dd>
+      <dd><input class="subbutton" type = "submit" value = "müşteri_kaydet" ></dd>
+    </fieldset>
+  </dl>
+  </form>
+</div>

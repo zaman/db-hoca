@@ -1,0 +1,17 @@
+<div id = "head">
+  AYIN HOCASI
+</div>
+<?php
+$hoca_id = 1;
+$hoca = new g56("HOCA");
+echo "<img src = 'resim/" . $hoca_id . ".png' />";
+$hoca->load("hoca_id = '" . $hoca_id . "'"); 
+echo "<br/><br/>";
+echo $hoca->ad . " ";
+echo $hoca->soyad . "<br/><br/>";
+echo $hoca->csv . "<br/>";
+echo $hoca->puan . "<br/>";
+g56::set('SESSION.hoca', $hoca->hoca_id);
+?>
+<br/>
+<a href = "puanver.php" ><input type="submit" value="puan ver"/></a>

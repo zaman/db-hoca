@@ -1,10 +1,8 @@
 <?php
 
 
-// TODO açıklama girilecek
 // PHP 5'de çalışan bir class çalışması
-// gdemir (Gökhan Demir)
-// gdemir => gFe => g56 :-)
+// gdemir => gFe => g56
 
 
 class g56 {
@@ -13,6 +11,7 @@ class g56 {
     private $fields;
     private $empty;
     static $global;
+    static $_ini;
 
     public function __construct($_table) {
 
@@ -30,23 +29,41 @@ class g56 {
 		$this->empty = true;
 	}
 
+	// example serve_root
+	//
+	// project place : /var/www/bilet-x
+	// serve root :    www.foo.com/bilet-x
+
+	public static function serve_root() {
+		return 'http://' . $_SERVER['SERVER_NAME'] . '/' . self::root();
+	}
+
 	// example path
 	//
-	// g56::path();
+	// project place : /var/www/bilet-x
+	// access place :  /var/www/bilet-x/foo  or
+	//                 /var/www/bilet-x/bar  or
+	//                 /var/www/bilet-x
+	// path : "/var/www/bilet-x"
 
 	public static function path() {
-		$sys_path = $_SERVER['DOCUMENT_ROOT'];
-		$file_path  = $_SERVER['SCRIPT_NAME'];
-		$root = "";
-		$state = true;
-		for ($i = 0; $i < strlen($file_path); $i++)
-			if ($state && $file_path[$i] == '/')
-				$state = false;
-			else if (!$state && $file_path[$i] == '/')
-				break;
-			else
-				$root .= $file_path[$i];
-		return $sys_path . '/' . $root . '/';
+		return $_SERVER['DOCUMENT_ROOT'] . '/' . self::root();
+	}
+
+	// example path
+	//
+	// project place : /var/www/bilet-x
+	// access place :  /var/www/bilet-x/foo  or
+	//                 /var/www/bilet-x/bar  or
+	//                 /var/www/bilet-x
+	// root : "bilet-x"
+
+	public static function root() {
+		$root = '';
+		$split = preg_split(
+			'/\//', $_SERVER['SCRIPT_NAME']
+			);
+		return (count($split) > 1) ? $split[1] . '/' : '';
 	}
 
 	// exapmle get_form
@@ -66,7 +83,10 @@ class g56 {
 				die("tabloda böyle bir key bulunmamaktadır!");
 	}
 
-	public function get_fields() {
+	// load fields in the '$this->fields'
+	//
+
+	private function get_fields() {
 		$_temp = array();
 		foreach (SQLdb::fields($this->table) as $field)
 			$_temp[$field] = '';
@@ -76,13 +96,16 @@ class g56 {
 	// exapmle find
 	//
 	// if ($admin->find("name = 'kill'"))
-	//    echo "bu isimde bir admin var";
+	//        echo "bu isimde bir admin var";
 	// else
-	//	  echo "bu isimde bir admin yok!";
+	//        echo "bu isimde bir admin yok!";
 
 	public function find($units) {
 		return self::_lookup($units) ? true : false;
 	}
+
+	// look, do you have ?
+	//
 
 	private function _lookup($units) {
 		return SQLdb::select($this->table, $units);
@@ -116,7 +139,7 @@ class g56 {
 
 	// example save
 	//
-	// see load and get_form
+	// see, load and get_form
 
 	public function save() {
 		if (!$this->empty) {
@@ -181,12 +204,12 @@ class g56 {
 			unset(self::$global[$part[0]][$part[1]]);
 	}
 
-	//
 	// if SESSION.x or POST.x return true
+	//
 
 	private static function _lookvalid($name) {
 		$part = explode('.', $name);
-		if (Util::array_len($part) == 2)
+		if (count($part) == 2)
 			if (array_key_exists($part[0], self::$global))
 				return array($part[0], $part[1]);
 		return null;
@@ -229,23 +252,26 @@ class g56 {
 
 	// example rows
 	//
-	// $admin = new g56("ETKINLIK");
-	// foreach ($admin->rows("kategori_id='1'") as $indis => $etkinlik)
-	//   foreach ($etkinlik as $key => $value)
+	// $admin = new g56("ADMIN");
+	// $adminler = $admin->rows("admin_id = '1'");
+	// foreach ($adminler['items'] as $indis => $admin)
+	//   foreach ($admin as $key => $value)
 	//	   echo $key . " : " . $value ;
 	//
 	//  or
 	//
-	// $admin = new g56("ETKINLIK");
-	// foreach ($admin->rows() as $indis => $etkinlik)
-	//   foreach ($etkinlik as $key => $value)
+	// $admin = new g56("ADMIN");
+	// $adminler = $admin->rows();
+	// foreach ($adminler['items'] as $indis => $admin)
+	//   foreach ($admin as $key => $value)
 	//	   echo $key . " : " . $value ;
 	//
 	//  or
 	//
-	// $admin = new g56("ETKINLIK");
-	// foreach ($admin->rows("kategori_id='1'", "name, super") as $indis => $etkinlik)
-	//   foreach ($etkinlik as $key => $value)
+	// $admin = new g56("ADMIN");
+	// $adminler = $admin->rows("admin_id = '1'", "name, super");
+	// foreach ($adminler['items'] as $indis => $admin)
+	//   foreach ($admin as $key => $value)
 	//	   echo $key . " : " . $value ;
 	//
 
@@ -269,6 +295,9 @@ class g56 {
 	public static function img_upload($_dest, $_file, $_img_name) {
 		return Image::upload($_dest, $_file, $_img_name);
 	}
+	public static function img_wh($_old_img) {
+		return Image::withd_height($_old_img);
+	}
 
 	// example config
 	//
@@ -281,31 +310,58 @@ class g56 {
 
 	public static function config($file) {
 		$_file = file($file);
-		$_ini = array(
-			'NAME' => null,
-			'USER' => null,
-			'PASS' => null,
-			'HOST' => null,
-			'INC'  => null,//FIXME
-			'GUI'  => null //FIXME
+		self::$_ini = array(
+			'DB' => array(
+				'name' => '',
+				'user' => '',
+				'password' => '',
+				'host' => '',
+				),
+			'BODY' => '',
+			'GUI' => '',
 			);
 		foreach ($_file as $row) {
-			if ($row == "\n") continue;
-			// =  göre split yapalım
-			$part = explode("=", $row);
-			// \n karakterini yok edelim
-			$part[1] = substr($part[1], 0, strlen($part[1]) - 1);
-			switch($part[0]) {
-			case 'DB.name':     $_ini['NAME'] = $part[1]; break;
-			case 'DB.user':     $_ini['USER'] = $part[1]; break;
-			case 'DB.password': $_ini['PASS'] = $part[1]; break;
-			case 'DB.host':     $_ini['HOST'] = $part[1]; break;
-			default:
-				die($file . " dosyasında tanımlanmayan değişken var!<br/>");
-			}
+			if ($row[0] == ';' || $row == "\n") continue;
+			$part = preg_split(
+				'/[\. | \=]/', $row
+				);
+			if (array_key_exists($part[0], self::$_ini))
+				if (count($part) == 3) {
+					$part[2] = trim($part[2]);
+					self::$_ini[$part[0]][$part[1]] = $part[2];
+				} elseif (count($part) == 2) {
+					$part[1] = trim($part[1]);
+					self::$_ini[$part[0]] = $part[1];
+				}
 		}
-		SQLdb::connect($_ini['HOST'], $_ini['USER'], $_ini['PASS'], $_ini['NAME']);
-		// close file
+		$_connect = self::$_ini['DB'];
+		SQLdb::connect(
+				$_connect['host'],
+				$_connect['user'],
+				$_connect['password'],
+				$_connect['name']
+				);
+	}
+
+	//
+	// example page
+	//
+	// // head
+	// head = array('head.htm', 'session.htm', 'menu.htm', 'error.htm');
+	//
+	// // body
+	// $template = array('template.htm');
+	//
+	// // footer
+	// $footer = array('footer.htm');
+
+	public static function page($head, $template, $footer) {
+		foreach ($head as $item)
+			include self::path() . self::$_ini['BODY'] . '/' . $item;
+		foreach ($template as $item)
+			include self::path() . self::$_ini['GUI'] . '/' . $item;
+		foreach ($footer as $item)
+			include self::path() . self::$_ini['BODY'] . '/' . $item;
 	}
 }
 
@@ -315,27 +371,31 @@ class SQLdb {
 		return mysql_fetch_field(mysql_query('select * from '. $_table))->name;
 	}
 	public static function query($ask) {
-		return mysql_fetch_assoc(mysql_query($ask));
+		return mysql_query($ask);
 	}
 	public static function fields($_table) {
 		$result = mysql_query('select * from ' . $_table);
 		$_fields = array();
 		while ($field = mysql_fetch_field($result))
-//			if (!$field->primary_key)
-				array_push($_fields, $field->name);
+			array_push($_fields, $field->name);
 		return $_fields;
 	}
 	public static function rows($_table, $_fields = NULL, $_request = NULL) {
 		$_requests = ($_request) ? $_request : '*';
 		$_finds = ($_fields) ? ' where ' . $_fields : '';
 		$result = mysql_query('select ' . $_requests . ' from ' . $_table . $_finds);
-		$_rows = array();
-		while($row = mysql_fetch_assoc($result))
-			array_push($_rows, $row);
+		$_rows = array(
+			'items' => array(),
+			'count' => null
+			);
+		while ($row = mysql_fetch_assoc($result))
+			array_push($_rows['items'], $row);
+		$result = mysql_fetch_assoc(mysql_query('select count(*) from ' . $_table . $_finds));
+		$_rows['count'] = $result['count(*)'];
 		return $_rows;
 	}
 	public static function select($_table, $_units) {
-		return self::query('select * from ' . $_table . ' where '. $_units);
+		return mysql_fetch_assoc(mysql_query('select * from ' . $_table . ' where '. $_units));
 	}
 	public static function erase($_table, $_units) {
 		return mysql_query('delete from ' . $_table . ' where '. $_units);
@@ -359,20 +419,12 @@ class SQLdb {
 	public static function connect($_host, $_user, $_pass, $_name) {
 		if (!($connector = mysql_connect($_host, $_user, $_pass)))
 			die("error : db user or password is wrong<br/>");
-		else
-			echo "success<br/>";
-
 		if (!mysql_select_db($_name, $connector))
 			die("error : dbname is wrong<br/>");
-		else
-			echo "success<br/>";
-	}
-}
-
-class Util {
-	public static function array_len($_array) {
-		for ($i = 0; $i < sizeof($_array); $i++);
-		return $i;
+		mysql_query('set names "utf8"');
+		mysql_query('set character set "utf8"'); // dil secenekleri
+		mysql_query('set collation_connection = "utf8_general_ci"');
+		mysql_query('set collation-server = "utf8_general_ci"');
 	}
 }
 
@@ -396,7 +448,7 @@ class Image {
 			return "Resim yok";
 
 		if (is_uploaded_file($_realfile)) {
-			if ($_uploadtype != "image/jpeg") {
+			if ($_uploadtype != 'image/jpeg') {
 				return "Resim jpeg formatında olmalıdır.";
 			} else if ($_uploadsize > 600000) {
 				return "Resim çok büyük.";
@@ -411,14 +463,17 @@ class Image {
 		}
 		return "Geçerli bir resim yok";
 	}
+	public static function withd_height($old_img) {
+		$img = imagecreatefromjpeg($old_img);
+		return array(
+			'withd' => imagesx($img),
+			'height' => imagesy($img),
+			);
+	}
 }
 
 // DEMO :
 // require 'lib/g56.php';
 // g56::config('.g56.ini');
-
-//
-// TODO SQLdb'ye açıklama girilecek
-//
 
 ?>

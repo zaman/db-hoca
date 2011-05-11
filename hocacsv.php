@@ -1,9 +1,20 @@
 <?php
 require 'lib/config.php';
-$hoca_id = g56::get('POST.hoca');
+require 'lib/util.php';
 
-$hoca = new g56("HOCA");
-$hocam = $hoca->rows("hoca_id = '". $hoca_id . "'", "ad, soyad, csv, puan");
+// head
+$head = array('head.htm', 'menu.htm','error.htm');
 
-print_r($hocam);
+// body
+$template = array('hocacsv.htm');
+
+// footer
+$footer = array('footer.htm');
+
+// page
+g56::page($head, $template, $footer);
 ?>
+
+
+  
+
