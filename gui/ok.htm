@@ -3,8 +3,14 @@
 <fieldset>	
 <?php
 	$array = g56::get('SESSION.ok');
-	foreach ($array as $key => $value)
-		echo "<dt>$key : $value</dt><br/>";
+	foreach ($array as $head => $info)
+		echo "<legend>". $head ."</legend>";
+
+	foreach ($info as $key => $value) {
+		echo "<b>$key : </b>";
+		echo "$value";
+		echo "<br>";
+	}
 ?>
 </fieldset>
 </dl>

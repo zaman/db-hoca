@@ -3,9 +3,8 @@ require '../lib/config.php';
 require '../util.php';
 
 $hoca = new g56('HOCA');
-$hoca->load("hoca_id = '" . g56::get('POST.hoca_id') . "'");
 
-if ($hoca->find("hoca_id = '" . $hoca->hoca_id . "'")) {
+if ($hoca->find("hoca_id = '" . g56::get('POST.hoca_id') . "'")) {
 	$hoca->load("hoca_id = '" . $hoca->hoca_id . "'");
 
 	if (g56::exists('SESSION.error'))
@@ -14,7 +13,7 @@ if ($hoca->find("hoca_id = '" . $hoca->hoca_id . "'")) {
 	$hoca->erase();
 
 	$ok = array(
-		  "ETKİNLİK SİLME BİLGİLERİ" =>
+		  "HOCA SİLME BİLGİLERİ" =>
 		    array(
 			"Ad" => $hoca->ad,
 			)

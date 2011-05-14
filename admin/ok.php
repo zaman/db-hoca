@@ -3,7 +3,7 @@ require 'lib/config.php';
 require 'lib/util.php';
 
 // head
-$head = array('head.htm', 'menu.htm', 'error.htm');
+$head = array('head.htm', 'error.htm');
 
 // body
 $template = array('ok.htm');

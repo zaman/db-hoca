@@ -19,18 +19,8 @@ if ($member->find("username = '" . g56::get('POST.username') . "' and password =
 	g56::set('SESSION.password', $member->password);
 	g56::set('SESSION.member_id', $member->member_id);
 	g56::set('SESSION.ok', $ok);
-	if (g56::exists('SESSION.onceki')) {
-		g56::clear('SESSION.onceki');
-		g56::call('rezerveyap.php');
-	} else
-		g56::call('index.php');
+	g56::call('index.php');
 } else {
 	g56::set('SESSION.error', "isim veya şifreniz hatalı, kontrol ediniz.");
-	if (g56::exists('SESSION.onceki')) {
-		g56::call('login.php');
-	} else
-		g56::call('index.php');
 }
-
-
 ?>

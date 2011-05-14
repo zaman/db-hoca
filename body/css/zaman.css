@@ -5,10 +5,6 @@ body {
    margin-left:200px;
    margin-right:200px;
 }
-head {
-  border: 5px solid;
-  background-color:red;
-}
 #form {
   text-align: left;
   font-size: 17px;
@@ -20,6 +16,6 @@ legend {
 	border: 1px solid;
 }
 
-#banner {
-	
+#menu {
+	background-color:9698af;
 }

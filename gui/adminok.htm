@@ -1,5 +1,5 @@
 <div id = "form">
-<form action = "hacaekle.php" method = "POST" enctype = "multipart/form-data">
+<form action = "hocaadd.php" method = "POST" enctype = "multipart/form-data">
   <dl>
   <fieldset>
 	<legend>YENİ HOCA EKLE</legend>
@@ -14,24 +14,13 @@
 	<dd>
 		<?php listbox_kv(uniler(), 'uni');?>
 	</dd>
-	<dd><input class="subbutton" type = "submit" value = "universite seçiniz"></dd>
 	<dt>Bölümler :</dt>
 	<dd>
 		<?php listbox_kv(bolumler(), 'bolum');?>
 	</dd>
-	<dd><input class="subbutton" type = "submit" value = "bolum seçiniz"></dd>
-  </fieldset>
-  </dl>
-</form>
-</div>
-
-<div id = "form">
-<form action = "csvekle.php" method = "POST">
-  <dl>
-  <fieldset>
-	<legend>CSV EKLE</legend>
-	<dt>csv yi yapıştırın</dt>
-	<dd><input class="subbutton" type = "submit" value = "yer_kaydet"></dd>
+	<dt>CSV :</dt>
+	<dd><input type = "text" name  = "csv" size = "100"></dd>
+	<dd><input class="subbutton" type = "submit" value = "hoca_kaydet"></dd>
   </fieldset>
   </dl>
 </form>
