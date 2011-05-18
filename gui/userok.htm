@@ -1,0 +1,23 @@
+<p class = 'info'>
+    <img src='<?php echo g56::serve_root();?>resim/add.png' />
+    <strong>İşleminiz aşağıdaki bilgilere göre başarıyla gerçekleştirildi </strong>
+  </p>
+  <div id = "form">
+  <dl>
+    <fieldset>
+    <?php
+	$_get = g56::get('SESSION.ok');
+	foreach ($_get as $head => $info)
+		echo "<legend>". $head ."</legend>";
+
+	foreach ($info as $key => $value) {
+		echo "<p class='info2'>";
+		echo "<b>$key : </b>";
+		echo "$value";
+		echo "</p>";
+	}
+    ?>
+    </fieldset>
+    ana sayfaya dönmek için <a href="index.php">tıklayınız</a>
+  </dl>
+  </div>

@@ -1,16 +1,30 @@
 <?php
-require '../lib/config.php'; 
-require '../util.php';
+require '../lib/config.php';
 
-// head // error and session // menu
-$head = array('head.htm', 'menu.htm','adminmenu.htm','adminsession.htm', 'error.htm');
+$member = new g56('MEMBER');
+if ($member->find("username = '" . g56::get('POST.username') . "'")) {
+	$member->load("username = '" . g56::get('POST.username') . "'");
 
-// body
-$template = array('usersil.htm');
+	$member->erase();
+	if (g56::exists('SESSION.error'))
+		g56::clear('SESSION.error');
 
-// footer
-$footer = array('footer.htm');
 
-// page
-g56::page($head, $template, $footer);
+	$ok = array(
+			"SİLİNEN KULLANICI BİLGİLERİ" => 
+			array(
+			"Kullanıcı adı" => $member->username,
+			"Şifre" => $member->password,
+			"Ad" => $member->ad,
+			"Soyad" => $member->soyad,
+			"Email" => $member->email,
+			));
+
+	g56::set('SESSION.ok', $ok);
+	g56::call('ok.php');
+
+} else {
+	g56::set('SESSION.error', "Bu isimde kullanıcı yok!");
+	g56::call('usersil.php');
+}
 ?>

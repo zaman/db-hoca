@@ -12,14 +12,15 @@
 
 	<dt>Universiteler :</dt>
 	<dd>
-		<?php listbox_kv(uniler(), 'uni');?>
+		<?php listbox_kv(uniler(), 'uni_id');?>
 	</dd>
 	<dt>Bölümler :</dt>
 	<dd>
-		<?php listbox_kv(bolumler(), 'bolum');?>
+		<?php listbox_kv(bolumler(), 'bolum_id');?>
 	</dd>
 	<dt>CSV :</dt>
-	<dd><input type = "text" name  = "csv" size = "100"></dd>
+	<dd><input type = "text" name  = "csv" </dd>
+	<dd><input type = "hidden" name  = "puan" value = "0"></dd>
 	<dd><input class="subbutton" type = "submit" value = "hoca_kaydet"></dd>
   </fieldset>
   </dl>

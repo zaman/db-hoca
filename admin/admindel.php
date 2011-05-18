@@ -1,16 +1,28 @@
 <?php
-require '../lib/config.php'; 
-require '../util.php';
+require '../lib/config.php';
 
-// head // error and session // menu
-$head = array('head.htm', 'menu.htm','adminmenu.htm','adminsession.htm', 'error.htm');
+$admin = new g56('ADMIN');
 
-// body
-$template = array('adminsil.htm');
+if ($admin->find("name = '" . g56::get('POST.name') . "'")) {
+	$admin->load("name = '" . g56::get('POST.name') . "'");
 
-// footer
-$footer = array('footer.htm');
+	$admin->erase();
 
-// page
-g56::page($head, $template, $footer);
+	$ok = array(
+		  "ADMIN SİLME BİLGİLERİ" =>
+		    array(
+			"Ad" => $admin->name,
+			"Kayıt tarihi" => $admin->tarih,
+			),
+		  );
+
+	g56::set('SESSION.ok', $ok);
+	g56::call('ok.php');
+
+} else {
+
+	g56::set('SESSION.error', "Böyle bir admin yok!");
+	g56::call('adminsil.php');
+
+}
 ?>

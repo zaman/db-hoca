@@ -1,16 +1,30 @@
 <?php
-require '../lib/config.php'; 
+require '../lib/config.php';
 require '../util.php';
 
-// head // error and session // menu
-$head = array('head.htm', 'menu.htm','adminmenu.htm','adminsession.htm', 'error.htm');
+$hoca = new g56('HOCA');
 
-// body
-$template = array('hocasil.htm');
+if ($hoca->find("hoca_id = '" . g56::get('POST.hoca_id') . "'")) {
+	$hoca->load("hoca_id = '" . g56::get('POST.hoca_id') . "'");
 
-// footer
-$footer = array('footer.htm');
+	if (g56::exists('SESSION.error'))
+		g56::clear('SESSION.error');
+	
+	$hoca->erase();
 
-// page
-g56::page($head, $template, $footer);
+	$ok = array(
+		  "HOCA SİLME BİLGİLERİ" =>
+		    array(
+			"Ad" => $hoca->ad,
+			"Soyad" => $hoca->soyad,
+			)
+		  );
+
+	g56::set('SESSION.ok', $ok);
+	g56::call('ok.php');
+
+} else {
+	g56::set('SESSION.error', "Hata oluştu!");
+	g56::call('hocasil.php');
+}
 ?>

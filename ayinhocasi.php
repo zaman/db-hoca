@@ -1,9 +1,9 @@
 <?php
 require 'lib/config.php';
-require 'lib/util.php';
+require 'util.php';
 
 // head
-$head = array('head.htm', 'menu.htm','error.htm');
+$head = array('head.htm','adminsession.htm', 'session.htm', 'menu.htm', 'error.htm');
 
 // body
 $template = array('ayinhocasi.htm');

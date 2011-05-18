@@ -395,6 +395,7 @@ class SQLdb {
 		return $_rows;
 	}
 	public static function select($_table, $_units) {
+		echo mysql_error();
 		return mysql_fetch_assoc(mysql_query('select * from ' . $_table . ' where '. $_units));
 	}
 	public static function erase($_table, $_units) {

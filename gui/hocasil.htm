@@ -1,11 +1,11 @@
 <div id = "form">
-<form action = "hocasil.php" method = "POST" enctype = "multipart/form-data">
+<form action = "hocadel.php" method = "POST" enctype = "multipart/form-data">
   <dl>
   <fieldset>
 	<legend>HOCA SİL</legend>
 	<dt>HOCALAR :</dt>
 	<dd>
-		<?php listbox_kv(hocalar(), 'hoca');?>
+		<?php listbox_kv(hocalar(), 'hoca_id');?>
 	</dd>
 	<dd><input class="subbutton" type = "submit" value = "hoca_sil"></dd>
   </fieldset>

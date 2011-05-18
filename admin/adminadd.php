@@ -1,16 +1,27 @@
 <?php
-require '../lib/config.php'; 
-require '../util.php';
+require '../lib/config.php';
 
-// head // error and session // menu
-$head = array('head.htm', 'menu.htm','adminmenu.htm','adminsession.htm', 'error.htm');
+$admin = new g56('ADMIN');
 
-// body
-$template = array('adminekle.htm');
+if (!$admin->find("name = '" . g56::get('POST.name') . "'")) {
+	$admin->get_form($_POST);
+	$admin->tarih = date('Y-m-d');
 
-// footer
-$footer = array('footer.htm');
+	$admin->save();
+	$admin->load("name = '" . g56::get('POST.name') . "'");
+	$ok = array(
+		  "ADMIN KAYIT BİLGİLERİ" =>
+		    array(
+			"Ad" => $admin->name,
+			"Kayıt tarihi" => $admin->tarih,
+			),
+		  );
 
-// page
-g56::page($head, $template, $footer);
+	g56::set('SESSION.ok', $ok);
+	g56::call('ok.php');
+} else {
+
+	g56::set('SESSION.error', "bu isimde admin zaten var!");
+	g56::call('adminekle.php');
+}
 ?>

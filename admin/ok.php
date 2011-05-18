@@ -1,12 +1,12 @@
 <?php
-require 'lib/config.php';
-require 'lib/util.php';
+require '../lib/config.php';
+require '../util.php';
 
 // head
-$head = array('head.htm', 'error.htm');
+$head = array('head.htm', 'adminsession.htm','menu.htm', 'adminmenu.htm', 'error.htm');
 
 // body
-$template = array('ok.htm');
+$template = array('userok.htm');
 
 // footer
 $footer = array('footer.htm');

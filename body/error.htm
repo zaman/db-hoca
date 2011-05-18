@@ -1,6 +1,8 @@
 <?php
 
-	if (g56::exists('SESSION.error'))
+	if (g56::exists('SESSION.error')) {
 		echo g56::get('SESSION.error');
+		g56::clear('SESSION.error');
+	}
 
 ?>

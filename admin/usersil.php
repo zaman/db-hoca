@@ -1,35 +1,16 @@
 <?php
-require '../lib/config.php';
+require '../lib/config.php'; 
+require '../util.php';
 
-$member = new g56('MEMBER');
-if ($member->find("username = '" . g56::get('POST.username') . "'")) {
-	$member->load("username = '" . g56::get('POST.username') . "'");
+// head // error and session // menu
+$head = array('head.htm', 'adminsession.htm','menu.htm','adminmenu.htm', 'error.htm');
 
-	$member->erase();
-	if (g56::exists('SESSION.error'))
-		g56::clear('SESSION.error');
+// body
+$template = array('usersil.htm');
 
+// footer
+$footer = array('footer.htm');
 
-	$ok = array(
-			"SİLİNEN KULLANICI BİLGİLERİ" => 
-			array(
-			"Müşteri no" => $member->member_id,
-			"Kullanıcı adı" => $member->username,
-			"Şifre" => $member->password,
-			"Ad" => $member->ad,
-			"Soyad" => $member->soyad,
-			"Email" => $member->email,
-			"İl" => $il->ad,
-			"Telefon" => $member->telefon,
-			"Kredi kart no" => $member->kredikart,
-			"Kayıt tarih" => $member->tarih,
-			));
-
-	g56::set('SESSION.ok', $ok);
-	g56::call(g56::serve_root() . 'ok.php');
-
-} else {
-	g56::set('SESSION.error', "Bu isimde kullanıcı yok!");
-	g56::call('loginok.php');
-}
+// page
+g56::page($head, $template, $footer);
 ?>

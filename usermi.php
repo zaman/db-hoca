@@ -19,7 +19,7 @@ $ok = array(
 			"Email" => $member->email));
 
 g56::set('SESSION.ok', $ok);
-	g56::call('ok.php');
+	g56::call('userok.php');
 
 } else {
 	g56::set('SESSION.error', $user . " ismi kullanılıyor başka bir isim seçin.");

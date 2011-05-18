@@ -1,0 +1,31 @@
+<?php
+	if (g56::exists('SESSION.name') && g56::exists('SESSION.password')) {
+		echo "
+		<div id = 'login'>
+			<form>
+			<dl>
+				<dt>Hoşgeldin</dt>
+				" .
+				g56::get('SESSION.name') .
+				"
+				<p class = 'info'>
+				oturumu kapatmak için <a href = 'logout.php'>tıklayınız.</a>
+				</p>
+			</dl>
+			</form>
+		</div>";
+	}else
+		echo "
+		<div id = 'login'>
+			<form>
+			<dl>
+				<dt></dt>
+				<dt></dt>
+				<dt></dt>
+				
+				
+				
+			</dl>
+			</form>
+		</div>";
+?>

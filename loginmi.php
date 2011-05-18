@@ -15,12 +15,13 @@ if ($member->find("username = '" . g56::get('POST.username') . "' and password =
 			"Soyad" => $member->soyad,
 			),
 		  );
-	g56::set('SESSION.username', $member->username);
+	g56::set('SESSION.name', $member->username);
 	g56::set('SESSION.password', $member->password);
 	g56::set('SESSION.member_id', $member->member_id);
 	g56::set('SESSION.ok', $ok);
-	g56::call('index.php');
+	g56::call('ayinhocasi.php');
 } else {
 	g56::set('SESSION.error', "isim veya şifreniz hatalı, kontrol ediniz.");
+	g56::call('login.php');
 }
 ?>
