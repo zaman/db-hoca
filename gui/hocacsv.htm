@@ -1,7 +1,7 @@
-<div id = "head">
+<div id = "contain">
   HOCA HAKKINDA
 </div>
-
+<div id="hiza">
 <?php
 	echo  '<div id="res">';
 	$hoca_id = g56::get('POST.hoca');
@@ -20,9 +20,10 @@
 	g56::set('SESSION.ad', $hoca->ad);
 	echo "</div>";
 ?>
+</div>
 
 <br/>
-<form id= "box" action = "puanver.php">
+<form id= "pbutton" action = "puanver.php">
 	
 	<input type="hidden" value="<?php echo $hoca->hoca_id; ?>"/></a>
 	<input type="submit" value="puan ver"/></a>

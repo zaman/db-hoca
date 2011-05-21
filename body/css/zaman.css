@@ -1,97 +1,56 @@
 a { text-decoration: none; }
 img { border: none; }
 body {
-  text-align: center;
-   margin-left:150px;
-   margin-right:150px;
-   background-color:#D3DCE1;
+   width:700px;
+   margin-left:250;
+   margin-right:250;
+   border:1px solid;
+   background-color:#c0d4d1;
 }
 legend {
 	color: #b00000;
 }
 #footer {
 	border: 1px solid;
+	text-align:center;
 }
 
 #menu {
-	margin-top:-20px;
-	background-color:#9698af;
+
+	background-color:#A0B0B7;
 	height:40px;
 	text-align:center;
 }
 #form {
-  text-align:         justify;
-  padding:            2.5em;   /* cerceve kenar uzakliklari */
   background-color:   #eeeeee; /* gray */
-  -moz-border-radius: 8px;
-  border-radius:      8px;
-  border:             1px solid #bebebe; /* cercevemiz */
   color:              #404142;
-}
-#form a { color: #555f6a; }
-#form strong { color: #404142; }
-#form fieldset {
-  width:   93%;
-  border:  2px gray solid;
-  padding: 1.5em;
-}
-#form fieldset > legend {
-  font-weight: bold;
-  background:  none;
-  padding:     1em;
+  margin-top:50px;
 }
 
-#form fieldset dt {
-
-  font:         14px Arial, Helvetica, sans-serif;
-  width:        250px;
-  float:        left;
-  text-align:   right;
-  display:      block;
-  margin-left:  3px;
-  margin-top:   3px;
-  margin-right: 8px;
-}
-#form fieldset dd {
-
-  font:         bold 12px Arial, Helvetica, sans-serif;
-  margin-left:  250px;
-  margin-bottom:  2px;
-  display:block;
-}
 #login {
-  width: 300px;
-  height:116px;
-  text-align: center;
-  background-color:   #9698af; /* gray */
-  border-radius:      8px;
-  border:             1px solid #bebebe; /* cercevemiz */
-
-  margin-top: -118px;
-  margin-left: 405px;
-  font-family:    helvetica, geneva, arial, sans-serif;
-  font-size:15px;
-  display: block;
+	width:200px;
+	margin-left:498px;
+	margin-top:-140px;
+	height:98px;
+    border:1px solid #c0d4d1;
+   background-color:#c0d4d1;
 }
  
 #banner {
 	width: 700px;
-	text-align: center;
+	height:100px;
 	background-color:   #eeeeee; /* gray */
-	border-radius: 8px;
-	border: 0px solid; 
-	margin-left:-200px;
 }
 
 #text {
   width: 400px;
   height:400px;
   text-align: center;
-  background-color:   #9698af; /* gray */
+  background-color:   #c0d4d1; /* gray */
   border-radius:      8px;
-  border:             1px solid #bebebe; /* cercevemiz */
+  border:             1px solid #c0d4d1; /* cercevemiz */
   margin-top: -300px;
-  margin-left: 300px;
+  margin-left: 298px;
   font-family:    helvetica, geneva, arial, sans-serif;
   font-size:15px;
   display: block;
@@ -108,5 +67,14 @@ legend {
 	margin-top:20px;
 }
 #contain {
-	width:700px;
+	margin-top:40px;
+	text-align:center;
 }
+
+#hiza {
+	margin-top:10px;
+}
+#pbutton {
+	margin-left:400px;
+}
+	

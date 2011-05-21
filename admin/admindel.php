@@ -5,19 +5,24 @@ $admin = new g56('ADMIN');
 
 if ($admin->find("name = '" . g56::get('POST.name') . "'")) {
 	$admin->load("name = '" . g56::get('POST.name') . "'");
+	if ($admin->name != "admin") {
+		$admin->erase();
 
-	$admin->erase();
+		$ok = array(
+			  "ADMIN SİLME BİLGİLERİ" =>
+				array(
+				"Ad" => $admin->name,
+				"Kayıt tarihi" => $admin->tarih,
+				),
+			  );
 
-	$ok = array(
-		  "ADMIN SİLME BİLGİLERİ" =>
-		    array(
-			"Ad" => $admin->name,
-			"Kayıt tarihi" => $admin->tarih,
-			),
-		  );
-
-	g56::set('SESSION.ok', $ok);
-	g56::call('ok.php');
+		g56::set('SESSION.ok', $ok);
+		g56::call('ok.php');
+	}
+	else {
+		g56::set('SESSION.error', "Bu admini silme hakkınız yok!");
+		g56::call('adminsil.php');
+	}
 
 } else {
 

@@ -3,7 +3,7 @@ require '../lib/config.php';
 require '../util.php';
 
 // head // error and session // menu
-$head = array('head.htm', 'adminsession.htm','menu.htm','adminmenu.htm', 'error.htm');
+$head = array('head.htm', 'menu.htm','adminsession.htm','adminmenu.htm', 'error.htm');
 
 // body
 $template = array('adminekle.htm');

@@ -4,7 +4,7 @@ require 'lib/config.php';
 require 'util.php';
 
 // head // error and session // menu
-$head = array('head.htm', 'session.htm', 'menu.htm', 'error.htm');
+$head = array('head.htm', 'menu.htm', 'session.htm', 'error.htm');
 
 // body
 $template = array('users.htm');
